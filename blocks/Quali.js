@@ -9,7 +9,7 @@ Blockly.Blocks['qs_initializeapi'] = {
     this.setInputsInline(true);
     this.setTooltip('Initialize API');
     this.setDeletable(false);
-    this.setHelpUrl('http://help.qualisystems.com');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/API/Pyth-API-Dev.htm');
   }
 };
 Blockly.Python['qs_initializeapi'] = function(block) {
@@ -38,7 +38,7 @@ Blockly.Blocks['qs_endapi'] = {
     this.setColour(184);
     this.setInputsInline(true);
     this.setTooltip('End API');
-    this.setHelpUrl('http://help.qualisystems.com');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/API/Pyth-API-Dev.htm');
   }
 };
 Blockly.Python['qs_endapi'] = function(block) {
@@ -55,7 +55,7 @@ Blockly.Blocks['qs_activatel1'] = {
     this.setColour(184);
     this.setInputsInline(true);
     this.setTooltip('Avtivate L1');
-    this.setHelpUrl('http://help.qualisystems.com');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/Admn/Cnct-Ctrl-L1-Swch.htm?Highlight=l1');
     this.appendDummyInput()
         .appendField("Activate the L1 in the topology called");
     this.appendValueInput("TopologyName")
@@ -77,7 +77,7 @@ Blockly.Blocks['qs_write'] = {
     this.setColour(184);
     this.setInputsInline(true);
     this.setTooltip('Write message to output saying ');
-    this.setHelpUrl('http://help.qualisystems.com');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/API/Pyth-API-Accs.htm');
     this.appendDummyInput()
         .appendField("Write an output message saying ");
     this.appendValueInput("Message")
@@ -113,7 +113,7 @@ Blockly.Blocks['qs_execmd'] = {
     this.setNextStatement(true, null);
     this.setColour(184);
     this.setTooltip('Execute command');
-    this.setHelpUrl('http://help.qualisystems.com');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/API/Pyth-API-Accs.htm');
   }
 };
 
@@ -146,7 +146,7 @@ Blockly.Blocks['qs_resstat'] = {
     this.setNextStatement(true, null);
     this.setColour(184);
     this.setTooltip('Set Reservation Status');
-    this.setHelpUrl('http://help.qualisystems.com/');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/Admn/St-Rsrv-liv-stt.htm?Highlight=live%20status');
   }
 };
 
@@ -169,7 +169,7 @@ Blockly.Blocks['qs_exeall'] = {
     this.setNextStatement(true, null);
     this.setColour(184);
     this.setTooltip('Run command on everything');
-    this.setHelpUrl('http://help.qualisystems.com/');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/API/Pyth-API-Accs.htm');
   }
 };
 
@@ -202,7 +202,7 @@ Blockly.Blocks['qs_waitnovm'] = {
     this.setNextStatement(true, null);
     this.setColour(184);
     this.setTooltip('Wait for no VM services to be left in sandbox');
-    this.setHelpUrl('http://help.qualisystems.com/');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/API/Pyth-API-Accs.htm');
   }
 };
 
