@@ -62,6 +62,20 @@
   <!-- start default blocks -->
   <xml id="startBlocks" style="display: none">
   <block type="qs_initializeapi" id="qsiapi" x="20" y="120">
+      <next>
+        <block type="text_print" id="txtpr000">
+            <value name="TEXT"><block type="text" id="txtprst000000"><field name="TEXT">Generated all commands from all resource blocks.</field></block></value>
+            <next>
+                <block type="text_print" id="txtpr010">
+                    <value name="TEXT"><block type="text" id="txtprst000010"><field name="TEXT">Drag, drop, reorder the above!</field></block></value>
+                    <next>
+                        <block type="qs_endapi" id="qsendapi">
+                        </block>
+                    </next>
+                </block>
+            </next>
+        </block>
+    </next>
   </block>
   <!-- end default blocks -->
   
