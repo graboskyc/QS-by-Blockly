@@ -24,7 +24,7 @@ for resource in rdet.ReservationDescription.Resources:
                 newR["cmds"].append(command.Name)
                 x = x+10
                 y = y+20
-                print '<block type="qs_execmd" x="'+str(x)+'" y="'+str(x)+'"><value name="cmd"><block type="text" ><field name="TEXT">'+command.Name+'</field></block></value><value name="name"><block type="text"><field name="TEXT">'+resource.Name+'</field></block></value></block>'
+                print '<block type="qs_execmd" x="'+str(x)+'" y="'+str(y)+'"><value name="cmd"><block type="text" ><field name="TEXT">'+command.Name+'</field></block></value><value name="name"><block type="text"><field name="TEXT">'+resource.Name+'</field></block></value></block>'
 
     except:
         pass
@@ -41,7 +41,7 @@ for service in rdet.ReservationDescription.Services:
             newS["cmds"].append(command.Name)
             x = x+10
             y = y+20
-            print '<block type="qs_execmd" x="'+str(x)+'" y="'+str(x)+'"><value name="cmd"><block type="text" ><field name="TEXT">'+command.Name+'</field></block></value><value name="name"><block type="text"><field name="TEXT">'+service.Alias+'</field></block></value></block>'
+            print '<block type="qs_execmd" x="'+str(x)+'" y="'+str(y)+'"><value name="cmd"><block type="text" ><field name="TEXT">'+command.Name+'</field></block></value><value name="name"><block type="text"><field name="TEXT">'+service.Alias+'</field></block></value><field name="type">service</field><value name="TEXT"></value></block>'
     sList.append(newS)
 
 csapi.Logoff()
