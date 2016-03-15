@@ -6,6 +6,10 @@
 //////////////////////////
 $QS_PathToCSPython = 'C:\Program Files (x86)\QualiSystems\TestShell\ExecutionServer\python\2.7.10\python.exe';
 $QS_PathToGetDetails = 'C:\inetpub\wwwroot\getDetails.py';
+$QS_APIHost = "localhost";
+$QS_APIUn = "admin";
+$QS_APIPw = "admin";
+$QS_APIDomain = "Global";
 ?>
 
 <head>
@@ -119,7 +123,7 @@ $QS_PathToGetDetails = 'C:\inetpub\wwwroot\getDetails.py';
     </next>
   </block>
   <?php
-    $command = '"'.$QS_PathToCSPython.'" '.$QS_PathToGetDetails.' ' . $_GET['resid'];
+    $command = '"'.$QS_PathToCSPython.'" '.$QS_PathToGetDetails.' -s '.$QS_APIHost.' -u '.$QS_APIUn.' -p '.$QS_APIPw.' -d '.$QS_APIDomain.' -r ' . $_GET['resid'];
     $output = shell_exec($command);
     echo $output;
   }
@@ -162,7 +166,7 @@ $QS_PathToGetDetails = 'C:\inetpub\wwwroot\getDetails.py';
   }
   ?>
     <xml id="toolbox" style="display: none">
-        <category name="Quali">
+        <category name="Quali" colour="184">
             <block type="qs_initializeapi"></block>
             <block type="qs_activatel1"></block>
             <block type="qs_resstat"></block>
@@ -172,14 +176,14 @@ $QS_PathToGetDetails = 'C:\inetpub\wwwroot\getDetails.py';
             <block type="qs_waitnovm"></block>
             <block type="qs_endapi"></block>
         </category>
-        <category name="Logic">
+        <category name="Logic" colour="210">
             <block type="controls_if"></block>
             <block type="logic_compare"></block>
             <block type="logic_operation"></block>
             <block type="logic_negate"></block>
             <block type="logic_boolean"></block>
         </category>
-        <category name="Loops">
+        <category name="Loops" colour="120">
             <block type="controls_repeat_ext">
                 <value name="TIMES">
                     <block type="math_number">
@@ -189,7 +193,7 @@ $QS_PathToGetDetails = 'C:\inetpub\wwwroot\getDetails.py';
             </block>
             <block type="controls_whileUntil"></block>
         </category>
-        <category name="Text">
+        <category name="Text" colour="160">
             <block type="text"></block>
             <block type="text_length"></block>
             <block type="text_print"></block>

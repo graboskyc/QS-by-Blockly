@@ -1,12 +1,21 @@
 import os
 import json
 import sys
+import argparse
 import qualipy.api.cloudshell_api
 
 
-csapi = qualipy.api.cloudshell_api.CloudShellAPISession("localhost", "admin", "admin", "Global")
+parser = argparse.ArgumentParser(description='Convert a QualiSystems CloudShell Reservation ID into the XML needed to build Blockly blocks.')
+parser.add_argument('-s', action="store", dest="host", help="server hostname for API session")
+parser.add_argument('-u', action="store", dest="un", help="username for API session")
+parser.add_argument('-p', action="store", dest="pw", help="password for API session")
+parser.add_argument('-d', action="store", dest="dom", help="domain for API session")
+parser.add_argument('-r', action="store", dest="resid", help="reservation ID to query")
+arg = parser.parse_args()
 
-rdet=csapi.GetReservationDetails(sys.argv[1])
+csapi = qualipy.api.cloudshell_api.CloudShellAPISession(arg.host, arg.un, arg.pw, arg.dom)
+
+rdet=csapi.GetReservationDetails(arg.resid)
 sList = []
 rList = []
 
