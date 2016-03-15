@@ -55,6 +55,7 @@ $QS_APIDomain = "Global";
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="index.php">Restart</a></li>
+                    <li><a href="#modalhelp" data-toggle="modal" data-target="#modalhelp">Help</a></li>
                 </ul>
                 
                 <button class="btn btn-success navbar-right" onclick="showCode()" style="margin-top: 7px;">Generate Python</button>
@@ -77,23 +78,60 @@ $QS_APIDomain = "Global";
 
     <div class="container">
         <div class="starter-template">
-            <p><i>Valid sample IDs are: <a href="index.php?resid=9271c598-2adc-417d-bf63-c0f424097242">9271c598-2adc-417d-bf63-c0f424097242</a> and <a href="index.php?resid=b7935bd6-9ef0-45fa-9821-3c21e090ba88">b7935bd6-9ef0-45fa-9821-3c21e090ba88</a></i></p>
             <div id="blocklyDiv" style="float:left;height: 800px; width: 1000px;"></div>
         </div>
     </div>
     
     
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="modalcode" tabindex="-1" role="dialog" aria-labelledby="modalcodeLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">CloudShell Environment Python Script</h4>
+                <h4 class="modal-title" id="modalcodeLabel">CloudShell Environment Python Script</h4>
             </div>
             <div class="modal-body">
                 <div id="codediv" style="overflow:scroll;">
                     <pre id="code" style="font-size:10px;"></pre>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modalhelp" tabindex="-1" role="dialog" aria-labelledby="modalhelpLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalhelpLabel">Help</h4>
+            </div>
+            <div class="modal-body">
+                <p>Use the following which may be of help:</p>
+                <ul>
+                    <li>Use the input box in the top right to enter a reservation ID and press "Load Reservation." This will allow you to automatically populate the canvas with all resource and service commands in that reservation.</li>
+                    <li>Valid sample IDs are: <a href="index.php?resid=9271c598-2adc-417d-bf63-c0f424097242">9271c598-2adc-417d-bf63-c0f424097242</a> and 
+                        <a href="index.php?resid=b7935bd6-9ef0-45fa-9821-3c21e090ba88">b7935bd6-9ef0-45fa-9821-3c21e090ba88</a>
+                    </li>
+                    <li>The canvas must start with a "Initialize API Session" block and should end with a "End API Session" block.</li>
+                    <li>Drag, drop, reorganize building blocks to make the script.</li>
+                    <li>If you do not need a block or a series of blocks, drag and drop them into the trash can in the bottom left. You cannot delete the "Initialize" block.</li>
+                    <li>Blocks also have useful right click commands, such as duplicating them.</li>
+                    <li>The toolbox of available blocks is on the left. Click a category, find a block you want, then drag it into the canvas.</li>
+                    <li>Once you have the layout you want, press the "Generate Python" button on the top right and you will see the environment script for CloudShell.</li>
+                </ul>
+                
+                <p>Additional Information:</p>
+                <ul>
+                    <li>This project's GITHUB repo is <a href="https://github.com/graboskyc/QS-by-Blockly" target="_blank">https://github.com/graboskyc/QS-by-Blockly</a>. Read the ReadMe file there.</li>
+                    <li>It relies upon <a href="https://developers.google.com/blockly/" target="_blank">Blockly from Google</a></li>
+                    <li>It also uses <a href="http://getbootstrap.com/" target="_blank">BootStrap</a> for design and <a href="https://jquery.com/" target="_blank">jQuery</a></li>
+                    <li>Currently there is a limitation that the designer does not allow CloudShell Resource Commands with inputs to be defined graphically. 
+                        The generated code would allow you to add them after the fact, once in Python. Keep up to date with feature enhancements on the github page.</li>
+                </ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -266,7 +304,7 @@ $QS_APIDomain = "Global";
             Blockly.Python.INFINITE_LOOP_TRAP = null;
             var code = Blockly.Python.workspaceToCode(workspace);
             document.getElementById('code').innerHTML=code;
-            $('#myModal').modal('show');
+            $('#modalcode').modal('show');
         }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
