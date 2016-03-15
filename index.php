@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+//////////////////////////
+// CONFIGURATION
+//////////////////////////
+$QS_PathToCSPython = 'C:\Program Files (x86)\QualiSystems\TestShell\ExecutionServer\python\2.7.10\python.exe';
+$QS_PathToGetDetails = 'C:\inetpub\wwwroot\getDetails.py';
+?>
 
 <head>
     <meta charset="utf-8">
@@ -53,7 +60,7 @@
                         <?php
                         if (!empty($_GET['resid'])) { $defval = "value='".$_GET['resid']."'"; } else { $defval = ''; }
                         ?>
-                        <input type="text" placeholder="resID" class="form-control" name="resid" id="resid" <?php echo $defval; ?> />
+                        <input style="width:230px;font-size:10px;" type="text" placeholder="resID" class="form-control" name="resid" id="resid" <?php echo $defval; ?> />
                     </div>
                     <button type="submit" class="btn btn-primary">Load Reservation</button>
                     
@@ -112,7 +119,7 @@
     </next>
   </block>
   <?php
-    $command = '"C:\Program Files (x86)\QualiSystems\TestShell\ExecutionServer\python\2.7.10\python.exe" C:\inetpub\wwwroot\getDetails.py ' . $_GET['resid'];
+    $command = '"'.$QS_PathToCSPython.'" '.$QS_PathToGetDetails.' ' . $_GET['resid'];
     $output = shell_exec($command);
     echo $output;
   }
@@ -245,24 +252,19 @@
     </xml>
 
     <script>
-        var workspace = Blockly.inject('blocklyDiv',
-        {media: 'media/',
-         toolbox: document.getElementById('toolbox')});
-    Blockly.Xml.domToWorkspace(workspace,
-        document.getElementById('startBlocks'));
+        var workspace = Blockly.inject('blocklyDiv', {
+            media: 'media/',
+            toolbox: document.getElementById('toolbox')
+        });
+        Blockly.Xml.domToWorkspace(workspace, document.getElementById('startBlocks'));
         
-
-    function showCode() {
-      // Generate JavaScript code and display it.
-      Blockly.Python.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.Python.workspaceToCode(workspace);
-      document.getElementById('code').innerHTML=code;
-      $('#myModal').modal('show');
-    }
+        function showCode() {
+            Blockly.Python.INFINITE_LOOP_TRAP = null;
+            var code = Blockly.Python.workspaceToCode(workspace);
+            document.getElementById('code').innerHTML=code;
+            $('#myModal').modal('show');
+        }
     </script>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
