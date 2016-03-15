@@ -31,9 +31,9 @@ $QS_APIDomain = "Global";
         }
     </style>
 
-    <script src="blockly_compressed.js"></script>
-    <script src="blocks_compressed.js"></script>
-    <script src="python_compressed.js"></script>
+    <script src="js/blockly_compressed.js"></script>
+    <script src="js/blocks_compressed.js"></script>
+    <script src="js/python_compressed.js"></script>
     <script src="msg/js/en.js"></script>
     <script src="blocks/Quali.js"></script>
 </head>
