@@ -133,6 +133,60 @@ Blockly.Python['qs_execmd'] = function(block) {
   return cmd;
 };
 
+
+
+Blockly.Blocks['qs_execmdinp'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Execute a command ");
+    this.appendValueInput("cmd")
+        .setCheck("String")
+        .appendField(new Blockly.FieldDropdown([["synchronously", "1"], ["asynchronously", "2"]]), "sync")
+        .appendField("called");
+    this.appendValueInput("name")
+        .setCheck("String")
+        .appendField("on a ")
+        .appendField(new Blockly.FieldDropdown([["resource", "Resource"], ["service", "Service"]]), "type")
+        .appendField("named");
+    this.appendValueInput("args")
+        .setCheck("Array")
+        .appendField("with inputs of");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(184);
+    this.setTooltip('Execute command which has inputs');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/API/Pyth-API-Accs.htm');
+  }
+};
+
+Blockly.Python['qs_execmdinp'] = function(block) {
+  var dropdown_sync = block.getFieldValue('sync');
+  var value_cmd = Blockly.Python.valueToCode(block, 'cmd', Blockly.Python.ORDER_ATOMIC);
+  var dropdown_type = block.getFieldValue('type');
+  var value_name = Blockly.Python.valueToCode(block, 'name', Blockly.Python.ORDER_ATOMIC);
+  var value_args = Blockly.Python.valueToCode(block, 'args', Blockly.Python.ORDER_ATOMIC);
+  var args = JSON.parse(value_args.replace(/'/g, "\""));
+
+  var cmd = "\n";
+  var i = 0;
+  var inputList = [];
+  args.forEach(function(entry) {
+      var kvp = entry.split(":");
+      cmd = cmd + "input"+i+' = qualipy.api.cloudshell_api.InputNameValue("'+kvp[0]+'", "'+kvp[1]+'")\n'
+      inputList.push('input'+i);
+      i = i + 1;
+  });
+  
+  if (dropdown_sync == "1"){
+    cmd = cmd+ 'csapi.ExecuteCommand(reservation["id"],'+value_name+',"'+dropdown_type+'",'+value_cmd+',['+inputList.toString()+'])\n\n';
+  }
+  else {
+    cmd = cmd+ 'csapi.EnqueueCommand(reservation["id"],'+value_name+',"'+dropdown_type+'",'+value_cmd+',['+inputList.toString()+'])\n\n';
+  }
+
+  return cmd;
+};
+
 ///////////////////////////////
 // Change status
 ///////////////////////////////

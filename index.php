@@ -122,6 +122,8 @@ $QS_APIDomain = "Global";
                     <li>Blocks also have useful right click commands, such as duplicating them.</li>
                     <li>The toolbox of available blocks is on the left. Click a category, find a block you want, then drag it into the canvas.</li>
                     <li>Once you have the layout you want, press the "Generate Python" button on the top right and you will see the environment script for CloudShell.</li>
+                    <li>If using <b>Lists</b> such as with the execute a command with inputs, drag over the list object an attatch it, then enter key value pairs with a : delimiter for each input. 
+                    For example: <br /><img src="media/help_lists.png" width="50%" height="50%" /></li>
                 </ul>
                 
                 <p>Additional Information:</p>
@@ -129,8 +131,6 @@ $QS_APIDomain = "Global";
                     <li>This project's GITHUB repo is <a href="https://github.com/graboskyc/QS-by-Blockly" target="_blank">https://github.com/graboskyc/QS-by-Blockly</a>. Read the ReadMe file there.</li>
                     <li>It relies upon <a href="https://developers.google.com/blockly/" target="_blank">Blockly from Google</a></li>
                     <li>It also uses <a href="http://getbootstrap.com/" target="_blank">BootStrap</a> for design and <a href="https://jquery.com/" target="_blank">jQuery</a></li>
-                    <li>Currently there is a limitation that the designer does not allow CloudShell Resource Commands with inputs to be defined graphically. 
-                        The generated code would allow you to add them after the fact, once in Python. Keep up to date with feature enhancements on the github page.</li>
                 </ul>
             </div>
             <div class="modal-footer">
@@ -164,6 +164,9 @@ $QS_APIDomain = "Global";
     $command = '"'.$QS_PathToCSPython.'" '.$QS_PathToGetDetails.' -s '.$QS_APIHost.' -u '.$QS_APIUn.' -p '.$QS_APIPw.' -d '.$QS_APIDomain.' -r ' . $_GET['resid'];
     $output = shell_exec($command);
     echo $output;
+  ?>
+  </xml>
+  <?php 
   }
   else {
   ?>
@@ -210,6 +213,7 @@ $QS_APIDomain = "Global";
             <block type="qs_resstat"></block>
             <block type="qs_write"></block>
             <block type="qs_execmd"></block>
+            <block type="qs_execmdinp"></block>
             <block type="qs_exeall"></block>
             <block type="qs_waitnovm"></block>
             <block type="qs_endapi"></block>
@@ -233,8 +237,10 @@ $QS_APIDomain = "Global";
         </category>
         <category name="Text" colour="160">
             <block type="text"></block>
-            <block type="text_length"></block>
             <block type="text_print"></block>
+        </category>
+        <category name="Lists" colour="260">
+            <block type="lists_create_with"></block>
         </category>
     </xml>
 

@@ -16,4 +16,3 @@ Additionally, there is a python script getDetails.py which uses the CloudShell A
 * CloudShell is installed with API version compatibility with 6.4
 * Python for CloudShell is installed in the default location (see index.php) and edit that if it changed.
 * Deployed on IIS in default directory. If not, update JavaScript/CSS includes and index.php the path to getDetails.py
-* In this version, it only supports services/resources with commands but no inputs to those commands. This feature is coming soon.
