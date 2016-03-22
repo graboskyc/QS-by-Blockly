@@ -242,6 +242,7 @@ $QS_APIDomain = "Global";
         <category name="Lists" colour="260">
             <block type="lists_create_with"></block>
         </category>
+        <category name="Variables" colour="330" custom="VARIABLE"></category>
     </xml>
 
 
@@ -302,7 +303,20 @@ $QS_APIDomain = "Global";
     <script>
         var workspace = Blockly.inject('blocklyDiv', {
             media: 'media/',
-            toolbox: document.getElementById('toolbox')
+            toolbox: document.getElementById('toolbox'),
+            zoom:
+                {controls: true,
+                wheel: false,
+                startScale: 1.0,
+                maxScale: 3,
+                minScale: 0.3,
+                scaleSpeed: 1.2},
+            trashcan: true,
+            grid:
+                {spacing: 20,
+                length: 3,
+                colour: '#ccc',
+                snap: true}
         });
         Blockly.Xml.domToWorkspace(workspace, document.getElementById('startBlocks'));
         
