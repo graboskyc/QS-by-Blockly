@@ -35,6 +35,7 @@ $QS_APIDomain = "Global";
     <script src="js/blocks_compressed.js"></script>
     <script src="js/python_compressed.js"></script>
     <script src="msg/js/en.js"></script>
+    <script src="js/storage.js"></script>
     <script src="blocks/Quali.js"></script>
 </head>
 
@@ -54,23 +55,32 @@ $QS_APIDomain = "Global";
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.php">Restart</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Canvas Options <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.php">Restart</a></li>
+                            <li><a href="javascript:BlocklyStorage.link()">Save</a></li>
+                            <li><a href="javascript:showXMLModal()">Restore</a></li>
+                            <li>
+                                <form action="index.php" method="GET">
+                                    <div class="form-group" style="width:410px;">
+                                        <?php
+                                        if (!empty($_GET['resid'])) { $defval = "value='".$_GET['resid']."'"; } else { $defval = ''; }
+                                        ?>
+                                        <input style="width:230px;font-size:10px;float:left;margin-left:20px;margin-top:-10px;" type="text" placeholder="resID" class="form-control" name="resid" id="resid" <?php echo $defval; ?> />
+                                        <button type="submit" class="btn btn-primary" style="float:left;margin-top: -10px; margin-left:5px;">Load Reservation</button>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a href="#modalhelp" data-toggle="modal" data-target="#modalhelp">Help</a></li>
                 </ul>
                 
                 <button class="btn btn-success navbar-right" onclick="showCode()" style="margin-top: 7px;">Generate Python</button>
-                
-                <form class="navbar-form navbar-right" action="index.php" method="GET">
-                    <div class="form-group">
-                        <?php
-                        if (!empty($_GET['resid'])) { $defval = "value='".$_GET['resid']."'"; } else { $defval = ''; }
-                        ?>
-                        <input style="width:230px;font-size:10px;" type="text" placeholder="resID" class="form-control" name="resid" id="resid" <?php echo $defval; ?> />
-                    </div>
-                    <button type="submit" class="btn btn-primary">Load Reservation</button>
-                    
-                </form>
-                
+
             </div>
             <!--/.nav-collapse -->
         </div>
@@ -88,14 +98,16 @@ $QS_APIDomain = "Global";
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="modalcodeLabel">CloudShell Environment Python Script</h4>
+                <h4 class="modal-title" id="modalcodeLabel">CloudShell Environment Data</h4>
             </div>
             <div class="modal-body">
                 <div id="codediv" style="overflow:scroll;">
                     <pre id="code" style="font-size:10px;"></pre>
+                    <textarea id="txt_code" style="width:100%;height:500px;font-size:10px;"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="loadXML()" id="btn_code">Load XML</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
             </div>
@@ -124,6 +136,7 @@ $QS_APIDomain = "Global";
                     <li>Once you have the layout you want, press the "Generate Python" button on the top right and you will see the environment script for CloudShell.</li>
                     <li>If using <b>Lists</b> such as with the execute a command with inputs, drag over the list object an attatch it, then enter key value pairs with a : delimiter for each input. 
                     For example: <br /><img src="media/help_lists.png" width="50%" height="50%" /></li>
+                    <li>For the <b>Save</b> and <b>Restore</b> functionality, press save button and keep that XML structure. At any time you can press the restore button, paste in that code, and press Load XML and it will rebuild the canvas with what you previously saved.</li>
                 </ul>
                 
                 <p>Additional Information:</p>
@@ -324,7 +337,23 @@ $QS_APIDomain = "Global";
             Blockly.Python.INFINITE_LOOP_TRAP = null;
             var code = Blockly.Python.workspaceToCode(workspace);
             document.getElementById('code').innerHTML=code;
+            $('#txt_code').hide();
+            $('#code').show();
+            $('#btn_code').hide();
             $('#modalcode').modal('show');
+        }
+        
+        function showXMLModal() {
+            $('#txt_code').val('');
+            $('#txt_code').show();
+            $('#btn_code').show();
+            $('#code').hide();
+            $('#modalcode').modal('show');
+        }
+        
+        function loadXML() {
+            $('#modalcode').modal('hide');
+            BlocklyStorage.loadXml_($('#txt_code').val());
         }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
