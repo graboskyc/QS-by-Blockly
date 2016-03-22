@@ -60,7 +60,8 @@ $QS_APIDomain = "Global";
                             Canvas Options <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="index.php">Restart</a></li>
+                            <li><a href="index.php">Restart from template</a></li>
+                            <li><a href="javascript:Blockly.getMainWorkspace().clear()">Restart from scratch</a></li>
                             <li><a href="javascript:BlocklyStorage.link()">Save</a></li>
                             <li><a href="javascript:showXMLModal()">Restore</a></li>
                             <li>
@@ -107,7 +108,8 @@ $QS_APIDomain = "Global";
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="loadXML()" id="btn_code">Load XML</button>
+                <button type="button" class="btn btn-warning" onclick="loadXML()" id="btn_code">Load XML</button>
+                <button type="button" class="btn btn-success" onclick="download()">Download File</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
             </div>
@@ -354,6 +356,33 @@ $QS_APIDomain = "Global";
         function loadXML() {
             $('#modalcode').modal('hide');
             BlocklyStorage.loadXml_($('#txt_code').val());
+        }
+        
+        function download() {
+            var postdata = "";
+            if ($('#btn_code').css("display") == "none") {
+                // python visible
+                postdata = $('#code').html();;
+            } else {
+                // xml visible
+                postdata = $('#txt_code').val();
+            }
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "download.php");
+            form.setAttribute("target", "Download");
+ 
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'qsbldata';
+            input.value = postdata;
+            form.appendChild(input);
+            
+            document.body.appendChild(form);
+            
+            form.submit();
+            
+            document.body.removeChild(form);
         }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
