@@ -19,6 +19,9 @@ csapi = qualipy.api.cloudshell_api.CloudShellAPISession(arg.host, arg.un, arg.pw
 # get all info about reservation ID that was passed in
 rdet=csapi.GetReservationDetails(arg.resid)
 
+# create variable block with name of environment
+print '<block type="variables_set"><field name="VAR">qs_TopoName</field><value name="VALUE"><block type="text"><field name="TEXT">'+rdet.ReservationDescription.Topologies[0]+'</field></block></value></block>\n\n'
+
 # state trackers
 x=0         # x coordinate offset for generated blockly blocks
 y=0         # y coordinate offset for generated blockly blocks
