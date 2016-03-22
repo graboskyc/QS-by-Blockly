@@ -6,6 +6,7 @@ While building a Setup driver or script is relatively simple, much of the proces
 In this latest build, it is still a proof of concept. However we have added the functionality to load a reservation's details out of a CloudShell instance and make building blocks out of it to make an orchestration script quickly.
 
 # New in this version
+* Can download the generated XML and PY files rather than having to copy/paste into text docs
 * Updated the canvas to be more readable and with more controls (like zoom)
 * Version beta0.8.0.0 of the code generator introduces commands with and without inputs
 * The canvas now supports lists (required for the above) as well as variables
