@@ -6,6 +6,7 @@ While building a Setup driver or script is relatively simple, much of the proces
 In this latest build, it is still a proof of concept. However we have added the functionality to load a reservation's details out of a CloudShell instance and make building blocks out of it to make an orchestration script quickly.
 
 # New in this version
+* Can upload the script to CloudShell without having to do it manually (downloading .p file, logging in, uploading)
 * Can download the generated XML and PY files rather than having to copy/paste into text docs
 * Updated the canvas to be more readable and with more controls (like zoom)
 * Version beta0.8.0.0 of the code generator introduces commands with and without inputs
@@ -23,4 +24,4 @@ Additionally, there is a python script getDetails.py which uses the CloudShell A
 * PHP is intalled
 * CloudShell is installed with API version compatibility with 6.4
 * Python for CloudShell is installed in the default location (see index.php) and edit that if it changed.
-* Deployed on IIS in default directory. If not, update JavaScript/CSS includes and index.php the path to getDetails.py
+* Deployed on IIS in default directory. If not, update JavaScript/CSS includes and configuration settings in config.php

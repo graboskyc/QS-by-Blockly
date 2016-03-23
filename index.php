@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-//////////////////////////
-// CONFIGURATION
-//////////////////////////
-$QS_PathToCSPython = 'C:\Program Files (x86)\QualiSystems\TestShell\ExecutionServer\python\2.7.10\python.exe';
-$QS_PathToGetDetails = 'C:\inetpub\wwwroot\getDetails.py';
-$QS_APIHost = "localhost";
-$QS_APIUn = "admin";
-$QS_APIPw = "admin";
-$QS_APIDomain = "Global";
+require_once('config.php');
 ?>
 
 <head>
@@ -109,6 +101,10 @@ $QS_APIDomain = "Global";
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" onclick="loadXML()" id="btn_code">Load XML</button>
+                <span id="btn_upload">
+                    <input type="text" id="txt_upload" value="ScriptName" />
+                    <button type="button" class="btn btn-danger" onclick="upload()">Upload Script</button>
+                </span>
                 <button type="button" class="btn btn-success" onclick="download()">Download File</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
@@ -343,6 +339,7 @@ $QS_APIDomain = "Global";
             $('#code').show();
             $('#btn_code').hide();
             $('#modalcode').modal('show');
+            $('#btn_upload').show();
         }
         
         function showXMLModal() {
@@ -351,6 +348,7 @@ $QS_APIDomain = "Global";
             $('#btn_code').show();
             $('#code').hide();
             $('#modalcode').modal('show');
+            $('#btn_upload').hide();
         }
         
         function loadXML() {
@@ -383,6 +381,37 @@ $QS_APIDomain = "Global";
             form.submit();
             
             document.body.removeChild(form);
+        }
+        
+        function upload() {
+            var postdata = "";
+            if ($('#btn_code').css("display") == "none") {
+                // python visible
+                postdata = $('#code').html();
+            
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "upload.php");
+                form.setAttribute("target", "Upload");
+    
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'qsbldata';
+                input.value = postdata;
+                form.appendChild(input);
+                
+                var inname = document.createElement('input');
+                inname.type = 'hidden';
+                inname.name = 'scriptname';
+                inname.value = $('#txt_upload').val();
+                form.appendChild(inname);
+                
+                document.body.appendChild(form);
+                
+                form.submit();
+                
+                document.body.removeChild(form);
+           }
         }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
