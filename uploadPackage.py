@@ -58,8 +58,8 @@ r = requests.post('http://'+arg.host+':9000/API/Package/ImportPackage',headers={
 print r._content
 print r.ok
 
-time.sleep(3)
 # delete temp folder and zip
+time.sleep(1)
 for root, dirs, files in os.walk(folder, topdown=False):
     for name in files:
         os.remove(os.path.join(root, name))

@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
+@session_start();
+if(!isset($_SESSION['un'])) { header('LOCATION: login.php'); }
+
 require_once('config.php');
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,6 +54,7 @@ require_once('config.php');
                             Canvas Options <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a href="c_logout.php">Logout of <?php echo $_SESSION['un'];?></a></li>
                             <li><a href="index.php">Restart from template</a></li>
                             <li><a href="javascript:Blockly.getMainWorkspace().clear()">Restart from scratch</a></li>
                             <li><a href="javascript:BlocklyStorage.link()">Save</a></li>
@@ -172,7 +175,7 @@ require_once('config.php');
     </next>
   </block>
   <?php
-    $command = '"'.$QS_PathToCSPython.'" '.$QS_PathToGetDetails.' -s '.$QS_APIHost.' -u '.$QS_APIUn.' -p '.$QS_APIPw.' -d '.$QS_APIDomain.' -r ' . $_GET['resid'];
+    $command = '"'.$QS_PathToCSPython.'" '.$QS_PathToGetDetails.' -s '.$_SESSION['server'].' -u '.$_SESSION['un'].' -p '.$_SESSION['pw'].' -d '.$_SESSION['domain'].' -r ' . $_GET['resid'];
     $output = shell_exec($command);
     echo $output;
   ?>
