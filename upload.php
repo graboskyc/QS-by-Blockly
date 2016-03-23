@@ -1,5 +1,6 @@
 <?php
 @session_start();
+if(!isset($_SESSION['un'])) { header('LOCATION: login.php'); }
 require_once('config.php');
 
 $data = $_POST['qsbldata'];
