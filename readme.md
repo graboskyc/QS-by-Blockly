@@ -8,6 +8,7 @@ There are two projects here, the web interface (every file and directory not in 
 # Latest updates
 ## Features of note in this version
 * Support to run as a CloudShell service, simplifying deployment on site
+
 ## Features of note in revious versions
 * Can upload the script to CloudShell without having to do it manually (downloading .py file, logging in, uploading)
 * Can download the generated XML and PY files rather than having to copy/paste into text docs
