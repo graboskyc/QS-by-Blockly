@@ -9,7 +9,7 @@ There are two projects here, the web interface (every file and directory not in 
 ## Features of note in this version
 * Support to run as a CloudShell service, simplifying deployment on site
 
-## Features of note in revious versions
+## Features of note in previous versions
 * Can upload the script to CloudShell without having to do it manually (downloading .py file, logging in, uploading)
 * Can download the generated XML and PY files rather than having to copy/paste into text docs
 * Updated the canvas to be more readable and with more controls (like zoom)
@@ -27,6 +27,8 @@ Requires PHP webserver and CloudShell 6.4 with python. Webserver must be able to
 Assumes your execution server is on Windows, Running CloudShell 6.4 in the default locations
 * Import the Environment package CS\Python Generator EnvPkg.zip into your CloudShell server
 * Reserve the environment and run the command StartGenerator with an available port (like 7777). When ready, the output will tell you where to go to generate code
+* Note that the mini web server will be up as long as the command is running. Hit the stop botton or end the reservation to stop the service.
+* If the command returns immediately after running and the server did not start, it is probably because you are missing a .DLL on the server, most likely MSVCR110.dll
 
 # Content
 Main content of custom Blockly Blocks is created in the index.php and blocks/Quali.js
