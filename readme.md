@@ -28,7 +28,7 @@ Assumes your execution server is on Windows, Running CloudShell 6.4 in the defau
 * Import the Environment package CS\Python Generator EnvPkg.zip into your CloudShell server
 * Reserve the environment and run the command StartGenerator with an available port (like 7777). When ready, the output will tell you where to go to generate code
 * Note that the mini web server will be up as long as the command is running. Hit the stop botton or end the reservation to stop the service.
-* If the command returns immediately after running and the server did not start, it is probably because you are missing a .DLL on the server, most likely MSVCR110.dll
+* If the command returns immediately after running and the server did not start, it is probably because you are missing a .DLL on the server, most likely MSVCR110.dll. If the upload does not work, ensure the python execution server has the "requests" package installed via PIP
 
 # Content
 Main content of custom Blockly Blocks is created in the index.php and blocks/Quali.js
