@@ -274,3 +274,33 @@ while servicesLeft or firstRun:\n\
 \t\t\tif (command.Name == "CreateVMs"):\n\
 \t\t\t\tservicesLeft = True\n\n';
 };
+
+
+
+///////////////////////////////
+// Visual Connector
+///////////////////////////////
+Blockly.Blocks['qs_visbi'] = {
+  init: function() {
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(184);
+    this.setInputsInline(true);
+    this.setTooltip('Create Visual Connector');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/Admn/Cnct-Ctrl-L1-Swch.htm?Highlight=l1');
+    this.appendDummyInput()
+        .appendField("Create a bidirectional visual connector between ");
+    this.appendValueInput("SRC")
+        .setCheck("String");
+    this.appendDummyInput()
+        .appendField(" and ");
+    this.appendValueInput("DST")
+        .setCheck("String");
+    }
+};
+Blockly.Python['qs_visbi'] = function(block) {
+  var value_SRC = Blockly.Python.valueToCode(block, 'SRC', Blockly.Python.ORDER_ATOMIC);
+  var value_DST = Blockly.Python.valueToCode(block, 'DST', Blockly.Python.ORDER_ATOMIC);
+  return 'c = qualipy.api.cloudshell_api.SetConnectorRequest('+value_SRC+', '+value_DST+', "bi", "")\n\
+csapi.SetConnectorsInReservation(reservation["id"], [c])\n\n';
+};

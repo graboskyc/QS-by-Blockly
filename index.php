@@ -229,6 +229,7 @@ require_once('config.php');
             <block type="qs_execmd"></block>
             <block type="qs_execmdinp"></block>
             <block type="qs_exeall"></block>
+            <block type="qs_visbi"></block>
             <block type="qs_waitnovm"></block>
             <block type="qs_endapi"></block>
         </category>
