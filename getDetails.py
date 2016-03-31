@@ -51,7 +51,7 @@ for resource in rdet.ReservationDescription.Resources:
         pass
     
 # ignore certain built in and normally hidden CloudShell commands
-badServiceNames = ["BeforeMyServiceChanged_Sync", "OnReservationEnded_Sync", "BeforeReservationEnded_Sync", "BeforeResourceDisconnectedFromMe_Sync", "BeforeMyConnectionsChanged", "BeforeReservationTerminated_Sync", "RemoveVLAN", "CreateVLAN"]
+badServiceNames = ["BeforeMyServiceChanged_Sync", "OnReservationEnded_Sync", "BeforeReservationEnded_Sync", "BeforeResourceDisconnectedFromMe_Sync", "BeforeMyConnectionsChanged", "BeforeReservationTerminated_Sync", "RemoveVLAN", "CreateVLAN", "BeforeDisconnectionBetweenServiceAndResource_Sync", "BeforeDisconnectionBetweenServiceAndResource_Sync", "BeforeServicesRemoved_Sync2", "BeforeServicesChanged2", "BeforeResourcesChanged2", "BeforeDisconnectionBetweenServiceAndResource_Sync"]
 
 for service in rdet.ReservationDescription.Services:
     # try/catch as not every service has commands

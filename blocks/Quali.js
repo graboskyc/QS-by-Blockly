@@ -68,6 +68,30 @@ Blockly.Python['qs_activatel1'] = function(block) {
 };
 
 ///////////////////////////////
+// Sleep
+///////////////////////////////
+Blockly.Blocks['qs_sleep'] = {
+  init: function() {
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(184);
+    this.setInputsInline(true);
+    this.setTooltip('Sleep');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/Admn/Cnct-Ctrl-L1-Swch.htm?Highlight=l1');
+    this.appendDummyInput()
+        .appendField("Sleep for ");
+    this.appendValueInput("sleep")
+        .setCheck("String");
+    this.appendDummyInput()
+        .appendField(" seconds");
+    }
+};
+Blockly.Python['qs_sleep'] = function(block) {
+  var value_sleep = Blockly.Python.valueToCode(block, 'sleep', Blockly.Python.ORDER_ATOMIC);
+  return 'time.sleep('+value_sleep+'))\n\n';
+};
+
+///////////////////////////////
 // Write Message
 ///////////////////////////////
 Blockly.Blocks['qs_write'] = {
@@ -303,4 +327,28 @@ Blockly.Python['qs_visbi'] = function(block) {
   var value_DST = Blockly.Python.valueToCode(block, 'DST', Blockly.Python.ORDER_ATOMIC);
   return 'c = qualipy.api.cloudshell_api.SetConnectorRequest('+value_SRC+', '+value_DST+', "bi", "")\n\
 csapi.SetConnectorsInReservation(reservation["id"], [c])\n\n';
+};
+
+Blockly.Blocks['qs_visbrm'] = {
+  init: function() {
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(184);
+    this.setInputsInline(true);
+    this.setTooltip('Remove Visual Connector');
+    this.setHelpUrl('http://help.qualisystems.com/Online%20Help/6.4.0.7907/Portal/Content/Admn/Cnct-Ctrl-L1-Swch.htm?Highlight=l1');
+    this.appendDummyInput()
+        .appendField("Remove a visual connector between ");
+    this.appendValueInput("SRC")
+        .setCheck("String");
+    this.appendDummyInput()
+        .appendField(" and ");
+    this.appendValueInput("DST")
+        .setCheck("String");
+    }
+};
+Blockly.Python['qs_visbrm'] = function(block) {
+  var value_SRC = Blockly.Python.valueToCode(block, 'SRC', Blockly.Python.ORDER_ATOMIC);
+  var value_DST = Blockly.Python.valueToCode(block, 'DST', Blockly.Python.ORDER_ATOMIC);
+  return 'csapi.RemoveConnectorsFromReservation(reservation["id"], ['+value_SRC+', '+value_DST+'])\n\n';
 };
